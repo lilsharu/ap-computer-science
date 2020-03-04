@@ -5,10 +5,9 @@ import java.util.*;
 
 public class Topography {
     private int[][] map;
-    public static String fileLocation = "AP Computer Science\\";
 
     public static void main(String[] args) throws IOException {
-        Topography a = new Topography(fileLocation + "test.txt");
+        Topography a = new Topography("test.txt");
         System.out.println(a.countPeaks());
     }
 
@@ -50,7 +49,7 @@ public class Topography {
         int count = 0;
         for (int x = 0; x < map.length; x++) {
             for (int y = 0; y < map[x].length; y++) {
-                if (highestInCluster(x, y)) {
+                if (highestTry(x, y)) {
                     count++;
                 }
             }
@@ -62,37 +61,22 @@ public class Topography {
     public boolean highestInCluster(int x, int y) {
         int inMap = map[x][y];
 
-        int beginX;
-        if (x == 0)
-            beginX = x;
-        else
-            beginX = x - 1;
+        int beginX = x - 1;
+        if (beginX < 0) beginX = 0;
 
-        int maxX;
-        if (x == map.length - 1) {
-            maxX = x;
-        }
-        else maxX = x + 1;
+        int maxX = x + 1;
+        if (maxX > map.length - 1) maxX = map.length - 1;
 
-        int maxY;
-        if (y == map[x].length - 1) {
-            maxY = y;
-        }
-        else maxY = y + 1;
+        int beginY = y - 1;
+        if (beginY < 0) beginY = 0;
 
-
-        int beginY;
-        if (y == 0)
-            beginY = y;
-        else
-            beginY = y -1;
+        int maxY = y + 1;
+        if (maxY > map[0].length - 1) maxY = map[0].length - 1;
 
         for (int a = beginX; a <= maxX; a++) {
             for (int b = beginY; b <= maxY; b++) {
-                if (a != x && b != y){
-                    if (!(inMap > map[a][b])) {
-                        return false;
-                    }
+                if (!(a == x && b == y) && !(inMap > map[a][b])) {
+                    return false;
                 }
             }
         }
@@ -106,7 +90,7 @@ public class Topography {
         for (int i = x - 1; i <= x + 1; i++){
             for (int k = y - 1; k <= y + 1; k++) {
                 try {
-                    if (i != x && k != y && !(inMap > map[i][k])) {
+                    if (!(i == x && k == y) && !(inMap > map[i][k])) {
                         return false;
                     }
                 }
