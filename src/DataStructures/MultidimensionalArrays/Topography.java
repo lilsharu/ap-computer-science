@@ -51,8 +51,6 @@ public class Topography {
         for (int x = 0; x < map.length; x++) {
             for (int y = 0; y < map[x].length; y++) {
                 if (highestInCluster(x, y)) {
-                    System.out.println(x + " " + y);
-                    System.out.println(map[x][y]);
                     count++;
                 }
             }
@@ -95,6 +93,25 @@ public class Topography {
                     if (!(inMap > map[a][b])) {
                         return false;
                     }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public boolean highestTry(int x, int y) {
+        int inMap = map[x][y];
+
+        for (int i = x - 1; i <= x + 1; i++){
+            for (int k = y - 1; k <= y + 1; k++) {
+                try {
+                    if (i != x && k != y && !(inMap > map[i][k])) {
+                        return false;
+                    }
+                }
+                catch (IndexOutOfBoundsException ex) {
+                    //Do Nothing
                 }
             }
         }
