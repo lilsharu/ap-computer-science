@@ -3,6 +3,16 @@ package DataStructures.MultidimensionalArrays;
 import java.io.*;
 import java.util.*;
 
+/**
+ * I have a countPeaks() method, which is a for loop which does the organizing. To make everything cleaner,
+ * I made another method to see if a number is the highest in its cluster. The initial idea was highestInCluster(),
+ * which used 4 if statements to collect the minimum and maximum values of the x and y in the cluster. Then, I
+ * came up with a much more effective try-catch method called highestTry(). This just used simple bounds of x -1 , x + 1,
+ * y - 1, and y + 1 to find the cluster, but if the index was out of bounds, it just threw the exception and did nothing.
+ *
+ * @author Shourya Bansal
+ * @version 2
+ */
 public class Topography {
     private int[][] map;
 
@@ -58,6 +68,9 @@ public class Topography {
         return count;
     }
 
+    /**
+     * @deprecated {@link #highestTry(int, int)}
+     */
     public boolean highestInCluster(int x, int y) {
         int inMap = map[x][y];
 
