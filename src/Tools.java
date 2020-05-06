@@ -24,13 +24,12 @@ public class Tools {
         return randomNumber;
     }
     
-    public String[] cutInHalf(String word) {
+    public static String[] cutInHalf(String word) {
         int len = word.length();
         int halfLength = len/2;
         String firstHalf = word.substring(0, halfLength);
         String secondHalf = word.substring(halfLength, len);
-        String[] halfArray = {firstHalf, secondHalf};
-        return halfArray;
+        return new String[]{firstHalf, secondHalf};
     }
     
     public String firstChars(int numberOfChars, String word) {
